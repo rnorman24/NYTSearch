@@ -16,10 +16,19 @@ var articleCounter = 0;
 
 // FUNCTIONS
 // ============================================
+function runQuery(numArticles, queryURL) {
 
+  // AJAX Function
+  $.ajax({url: queryURL, method: "GET"})
+    .done(function(NYTData) {
+      console.log(NYTData);
+    })
+}
 // MAIN PROCESSES
 // ============================================
-
+$("#search-btn").on("click", function() {
+  runQuery();
+})
 // 1. Retrieve user inputs and convert to variables
 // 2. Use those variables to run an AJAX to the New York Times
 // 3. Break down the NYT Object into useable fields
