@@ -2,6 +2,18 @@
 // ============================================
 var authKey = "c4d0935b7d4d411586a4d5453386e817";
 
+// Search Parameters
+var queryTerm   = "";
+var numResults  = 0;
+var startYear   = 0;
+var endYear     = 0;
+
+// URL Base
+var queryURLBase = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + authKey;
+
+// Variable to track number of articles
+var articleCounter = 0;
+
 // FUNCTIONS
 // ============================================
 
