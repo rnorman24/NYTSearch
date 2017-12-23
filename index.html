@@ -41,7 +41,7 @@
 
             <div class"form-group">
               <label for="select-list">Number of Records to Retrieve:</label>
-              <select class="form-control">
+              <select class="form-control" id="num-records">
                 <option value="10">10</option>
                 <option value="5" selected>5</option>
                 <option value="1">1</option>
@@ -57,8 +57,8 @@
               <label for="end-year">End Year:</label>
               <input type="text" class="form-control" id="end-year">
             </div>
-            <button type="submit" class="btn btn-primary" id="search-btn">Search</button>
-            <button type="button" class="btn btn-primary">Clear Results</button>
+            <button type="submit" class="btn btn-primary" id="searchBtn">Search</button>
+            <button type="button" class="btn btn-primary" id="clear">Clear Results</button>
           </form>
         </div>
       </div>
@@ -70,21 +70,8 @@
         <div class="card-header">
           <h3 class="card-title">Search Results</h3>
         </div>
-        <div class="card-body">
-          <div class="card-body">
-            <h2>Title</h2>
-            <h3>Author</h3>
-            <h4>Section</h4>
-            <h4>Date</h4>
-            <h4>Link</h4>
-          </div>
-          <div class="card-body">
-            <h2>Title</h2>
-            <h3>Author</h3>
-            <h4>Section</h4>
-            <h4>Date</h4>
-            <h4>Link</h4>
-          </div>
+        <div class="card-body" id="results">
+
         </div>
       </div>
     </div>
