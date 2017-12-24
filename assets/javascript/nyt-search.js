@@ -17,12 +17,15 @@ var articleCounter = 0;
 // FUNCTIONS
 // ============================================
 function runQuery(numArticles, queryURL) {
-console.log(queryURL);
+console.log("This is numArticles:  " + numArticles);
+console.log("This is queryURL:  " + queryURL);
   // AJAX Function
-  $.ajax({url: queryURL, method: "GET"})
-    .done(function(NYTData) {
-
-      // Clear the wells from the previous run
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).done(function(NYTData) {
+    console.log("This is NYTData:  " + NYTData);
+      // Clear the container from the previous run
       $("#results").empty();
 
       for (var i = 0; i < NYTData.response.docs.length; i++) {
@@ -43,7 +46,7 @@ console.log(queryURL);
         $("#articleResult-" + i).append("<h5>" + NYTData.response.docs[i].byline.original + "</h5>");
       }
 
-      // Attach the content to the appropriate well
+      // Attach the content to the appropriate container
       $("#articleResult-" + i).append("<h5>" + NYTData.response.docs[i].section_name + "</h5>");
       $("#articleResult-" + i).append("<h5>" + NYTData.response.docs[i].pub_date + "</h5>");
       $("#articleResult-" + i).append("<a href=" + NYTData.response.docs[i].web_url + ">" + NYTData.response.docs[i].web_url + "</a>");
@@ -56,12 +59,14 @@ console.log(queryURL);
 }
 // MAIN PROCESSES
 // ============================================
-$("#searchBtn").on("click", function() {
+$("#search-btn").on("click", function(event) {
+
+  event.preventDefault();
 
   queryTerm = $("#search").val().trim();
 
   // Add in the Search Term
-  var newURL = queryURLBase + "&q" + queryTerm;
+  var newURL = queryURLBase + "&q=" + queryTerm;
 
   // Get the Number of Records
   numResults = $("#num-records").val();
@@ -72,7 +77,7 @@ $("#searchBtn").on("click", function() {
 
   if (parseInt(startYear)) {
 
-    // Add the vecessary fields
+    // Add the necessary fields
     startYear = startYear + "0101";
 
     // Add the date information to the URL
@@ -87,11 +92,11 @@ $("#searchBtn").on("click", function() {
     // Add the date information to the URL
     newURL = newURL + "&end_date=" + endYear;
   }
-
+  console.log("This is numResults:  " + numResults);
+  console.log("This is newURL:  " + newURL);
   // Send the AJAX Call the newly asswmbled URL
   runQuery(numResults, newURL);
 
-  return false;
 })
 
 // 1. Retrieve user inputs and convert to variables
