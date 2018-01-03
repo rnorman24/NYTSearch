@@ -48,13 +48,13 @@ function runQuery(numArticles, queryURL) {
         // Check if the headline exists
         if (NYTData.response.docs[i].headline != "null") {
           console.log("HEADLINE: " + NYTData.response.docs[i].headline.main);
-          $("#articlesSection-" + i).append("<h3>" + NYTData.response.docs[i].headline.main + "</h3>");
+          $("#articleCard-" + i).append("<h3>" + NYTData.response.docs[i].headline.main + "</h3>");
         }
 
         // Check if the byline exists
-        if (NYTData.response.docs[i].byline && NYTData.response.docs[i].byline.hasOwnProperty("original")) {
+        if (NYTData.response.docs[i].byline && NYTData.response.docs[i].byline.original) {
           console.log("AUTHOR: " + NYTData.response.docs[i].byline.original);
-          $("#articlesSection-" + i).append("<h5>" + NYTData.response.docs[i].byline.original + "</h5>");
+          $("#articleCard-" + i).append("<h5>" + NYTData.response.docs[i].byline.original + "</h5>");
         }
 
         // Attach the content to the appropriate container
