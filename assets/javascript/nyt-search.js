@@ -104,7 +104,11 @@ $("#search-btn").on("click", function(event) {
   // Send the AJAX Call the newly asswmbled URL
   runQuery(numResults, newURL);
 
-})
+});
+
+$("#clear-btn").on("click", function() {
+  window.location.reload();
+});
 
 // 1. Retrieve user inputs and convert to variables
 // 2. Use those variables to run an AJAX to the New York Times
