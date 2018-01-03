@@ -17,24 +17,16 @@ var articleCounter = 0;
 // FUNCTIONS
 // ============================================
 function runQuery(numArticles, queryURL) {
-
+console.log("This is numArticles:  " + numArticles);
+console.log("This is queryURL:  " + queryURL);
   // AJAX Function
   $.ajax({
     url: queryURL,
     method: "GET"
   }).done(function(NYTData) {
-
-      for (var i = 0; i < numArticles; i++) {
-                console.log("HEADLINE: " + NYTData.response.docs[i].headline.main);
-                console.log("AUTHOR: " + NYTData.response.docs[i].byline.original);
-                console.log("SECTION: " + NYTData.response.docs[i].section_name);
-                console.log("DATE: " + NYTData.response.docs[i].pub_date);
-                console.log("LINK: " + NYTData.response.docs[i].web_url);
-
-      }
-
+    console.log("This is NYTData:  " + NYTData);
       // Clear the container from the previous run
-/*      $("#results").empty();
+      $("#results").empty();
 
       for (var i = 0; i < NYTData.response.docs.length; i++) {
 
@@ -59,10 +51,10 @@ function runQuery(numArticles, queryURL) {
         $("#articleResult-" + i).append("<h5>" + NYTData.response.docs[i].pub_date + "</h5>");
         $("#articleResult-" + i).append("<a href=" + NYTData.response.docs[i].web_url + ">" + NYTData.response.docs[i].web_url + "</a>");
 
-      }*/
-      console.log("This is queryURL: " + queryURL);
-      console.log("This is numArticles: " + numArticles);
-      console.log("This is NYTData:  " + NYTData);
+      }
+      console.log(queryURL);
+      console.log(numArticles);
+      console.log(NYTData);
     })
 }
 // MAIN PROCESSES
@@ -70,7 +62,7 @@ function runQuery(numArticles, queryURL) {
 $("#search-btn").on("click", function(event) {
 
   event.preventDefault();
-  // Get search term
+
   queryTerm = $("#search").val().trim();
 
   // Add in the Search Term
@@ -100,7 +92,8 @@ $("#search-btn").on("click", function(event) {
     // Add the date information to the URL
     newURL = newURL + "&end_date=" + endYear;
   }
-
+  console.log("This is numResults:  " + numResults);
+  console.log("This is newURL:  " + newURL);
   // Send the AJAX Call the newly asswmbled URL
   runQuery(numResults, newURL);
 
