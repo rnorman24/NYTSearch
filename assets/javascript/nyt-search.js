@@ -23,10 +23,11 @@ function runQuery(numArticles, queryURL) {
     url: queryURL,
     method: "GET"
   }).done(function(NYTData) {
+    console.log("This is queryURL: " + queryURL);
+    console.log("This is numArticles: " + numArticles);
+    console.log("This is NYTData:  " + NYTData);
 
       for (var i = 0; i < numArticles; i++) {
-                console.log("HEADLINE: " + NYTData.response.docs[i].headline.main);
-                console.log("AUTHOR: " + NYTData.response.docs[i].byline.original);
                 console.log("SECTION: " + NYTData.response.docs[i].section_name);
                 console.log("DATE: " + NYTData.response.docs[i].pub_date);
                 console.log("LINK: " + NYTData.response.docs[i].web_url);
@@ -34,35 +35,34 @@ function runQuery(numArticles, queryURL) {
       }
 
       // Clear the container from the previous run
-/*      $("#results").empty();
+      $("#articlesSection").empty();
 
-      for (var i = 0; i < NYTData.response.docs.length; i++) {
+      for (var i = 0; i < numArticles; i++) {
 
-        // Start Dumping to HTML Here
-        var results = $("<div>");
-        results.addClass("result");
-        results.attr("id", "articleResult-" + i);
-        $("#results").append(results);
+        // Start Displaying to HTML Here
+        var articlesSection = $("<div>");
+        articlesSection.addClass("card-body");
+        articlesSection.attr("id", "articleCard-" + i);
+        $("#articlesSection").append(articlesSection);
 
-        // Check if things exist
+        // Check if the headline exists
         if (NYTData.response.docs[i].headline != "null") {
-          $("#articleResult-" + i).append("<h3>" + NYTData.response.docs[i].headline.main + "</h3>");
+          console.log("HEADLINE: " + NYTData.response.docs[i].headline.main);
+          $("#articlesSection-" + i).append("<h3>" + NYTData.response.docs[i].headline.main + "</h3>");
         }
 
-        // Check if the byline
-        if (NYTData.response.docs[i].byline && NYTData.response.docs[i].byline.hasWonProperty("original")){
-          $("#articleResult-" + i).append("<h5>" + NYTData.response.docs[i].byline.original + "</h5>");
+        // Check if the byline exists
+        if (NYTData.response.docs[i].byline && NYTData.response.docs[i].byline.hasOwnProperty("original")) {
+          console.log("AUTHOR: " + NYTData.response.docs[i].byline.original);
+          $("#articlesSection-" + i).append("<h5>" + NYTData.response.docs[i].byline.original + "</h5>");
         }
 
         // Attach the content to the appropriate container
-        $("#articleResult-" + i).append("<h5>" + NYTData.response.docs[i].section_name + "</h5>");
-        $("#articleResult-" + i).append("<h5>" + NYTData.response.docs[i].pub_date + "</h5>");
-        $("#articleResult-" + i).append("<a href=" + NYTData.response.docs[i].web_url + ">" + NYTData.response.docs[i].web_url + "</a>");
+        $("#articleCard-" + i).append("<h5>" + NYTData.response.docs[i].section_name + "</h5>");
+        $("#articleCard-" + i).append("<h5>" + NYTData.response.docs[i].pub_date + "</h5>");
+        $("#articleCard-" + i).append("<a href=" + NYTData.response.docs[i].web_url + ">" + NYTData.response.docs[i].web_url + "</a>");
 
-      }*/
-      console.log("This is queryURL: " + queryURL);
-      console.log("This is numArticles: " + numArticles);
-      console.log("This is NYTData:  " + NYTData);
+      }
     })
 }
 // MAIN PROCESSES
