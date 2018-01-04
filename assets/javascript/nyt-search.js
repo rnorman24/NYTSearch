@@ -57,9 +57,19 @@ function runQuery(numArticles, queryURL) {
           $("#articleCard-" + i).append("<h5>" + NYTData.response.docs[i].byline.original + "</h5>");
         }
 
+        // Check if the section_name exists
+        if (NYTData.response.docs[i].hasOwnProperty("section_name")) {
+          console.log("SECTION: " + NYTData.response.docs[i].section_name);
+          $("#articleCard-" + i).append("<h5>" + NYTData.response.docs[i].section_name + "</h5>");
+        }
+
+        // Check if the date exists
+        if (NYTData.response.docs[i].hasOwnProperty("pub_date")) {
+          console.log("DATE: " + NYTData.response.docs[i].pub_date);
+          $("#articleCard-" + i).append("<h5>" + NYTData.response.docs[i].pub_date + "</h5>");
+        }
+
         // Attach the content to the appropriate container
-        $("#articleCard-" + i).append("<h5>" + NYTData.response.docs[i].section_name + "</h5>");
-        $("#articleCard-" + i).append("<h5>" + NYTData.response.docs[i].pub_date + "</h5>");
         $("#articleCard-" + i).append("<a href=" + NYTData.response.docs[i].web_url + ">" + NYTData.response.docs[i].web_url + "</a>");
 
       }
