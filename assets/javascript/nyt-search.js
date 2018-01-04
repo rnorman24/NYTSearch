@@ -52,7 +52,7 @@ function runQuery(numArticles, queryURL) {
         }
 
         // Check if the byline exists
-        if (NYTData.response.docs[i].byline && NYTData.response.docs[i].byline.original) {
+        if (NYTData.response.docs[i].byline && NYTData.response.docs[i].byline.hasOwnProperty("original")) {
           console.log("AUTHOR: " + NYTData.response.docs[i].byline.original);
           $("#articleCard-" + i).append("<h5>" + NYTData.response.docs[i].byline.original + "</h5>");
         }
