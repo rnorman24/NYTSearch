@@ -105,7 +105,7 @@ $("#search-btn").on("click", function(event) {
   if (parseInt(endYear)) {
 
     // Add the necessary fields
-    endYear = endYear + "0101";
+    endYear = endYear + "1231";
 
     // Add the date information to the URL
     newURL = newURL + "&end_date=" + endYear;
@@ -117,7 +117,9 @@ $("#search-btn").on("click", function(event) {
 });
 
 $("#clear-btn").on("click", function() {
-  window.location.reload();
+  $("#search").val("");
+  $("#start-year").val("");
+  $("#end-year").val("");
 });
 
 // 1. Retrieve user inputs and convert to variables
